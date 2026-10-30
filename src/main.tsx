@@ -82,7 +82,7 @@ function Hero() {
     return () => observer.disconnect();
   }, []);
   return <section ref={heroRef} id="etusivu" className="hero hero-reference" aria-labelledby="hero-heading" onFocusCapture={() => entranceRef.current?.progress(1)}>
-    <img className="hero-image" src="/images/hero.webp" alt="Kuvituskuva: vaalea suomalainen puutalo, puuterassi ja vehreä kesäpiha" fetchPriority="high" width="1536" height="1024" />
+    <img className="hero-image" src={`${import.meta.env.BASE_URL}images/hero.webp`} alt="Kuvituskuva: vaalea suomalainen puutalo, puuterassi ja vehreä kesäpiha" fetchPriority="high" width="1536" height="1024" />
     <div className="hero-shade" aria-hidden="true" />
     <div className="hero-inner">
       <p className="hero-kicker">PAIKALLISTA OSAAMISTA</p>
@@ -97,7 +97,7 @@ function Services({ choose }: { choose: (service: string) => void }) {
   return <section id="palvelut" className="services section" aria-labelledby="services-heading"><div className="container">
     <div className="section-heading reveal"><div><Eyebrow>Palvelumme</Eyebrow><h2 id="services-heading">Remontointia kodin eri tarpeisiin</h2></div><p>Tarjoamme laadukkaita remontti- ja maalauspalveluita Nurmijärvellä ja lähialueilla. Oli kyseessä pieni päivitys tai laajempi saneeraus, autamme mielellämme.</p></div>
     <div className="services-grid">{services.map((service, index) => <a key={service.title} className="service-card reveal" style={{ '--delay': `${index * 55}ms` } as React.CSSProperties} href="#yhteystiedot" onClick={() => choose(service.title)} aria-label={`${service.title} – pyydä tarjous`}>
-      <div className="service-image"><img src={`/images/${service.image}.webp`} alt={service.alt} loading="lazy" width="560" height="420" /></div>
+      <div className="service-image"><img src={`${import.meta.env.BASE_URL}images/${service.image}.webp`} alt={service.alt} loading="lazy" width="560" height="420" /></div>
       <div className="service-copy"><h3>{service.title}</h3><p>{service.description}</p><ArrowRight className="card-arrow" size={25} aria-hidden="true" /></div>
     </a>)}</div>
   </div></section>;
@@ -163,7 +163,7 @@ function Contact({ chosen }: { chosen: string }) {
       }, maxLength: name === 'message' ? 4000 : 180 };
     return <div className="field"><label htmlFor={shared.id}>{label}{required && <span className="required"> *</span>}</label>{name === 'message' ? <textarea {...shared} rows={3} placeholder="Esim. kodinhoitohuoneen remontti, maalaus, aikataulu…" /> : <input {...shared} type={type} placeholder={name === 'location' ? 'Esim. Klaukkala, Nurmijärvi tai 01800' : undefined} autoComplete={{ name: 'name', email: 'email', phone: 'tel', location: 'off', message: 'off' }[name]} />}{errors[name] && <p id={`error-${name}`} className="field-error">{errors[name]}</p>}</div>;
   };
-  return <section id="yhteystiedot" className="contact" aria-labelledby="contact-heading"><div className="contact-photo"><img src="/images/contact.webp" alt="Valkoisia kukkia ruukussa suomalaisen puutalon terassiportailla" width="1086" height="1448" loading="lazy" /></div><div className="container contact-grid">
+  return <section id="yhteystiedot" className="contact" aria-labelledby="contact-heading"><div className="contact-photo"><img src={`${import.meta.env.BASE_URL}images/contact.webp`} alt="Valkoisia kukkia ruukussa suomalaisen puutalon terassiportailla" width="1086" height="1448" loading="lazy" /></div><div className="container contact-grid">
     <div className="contact-copy reveal"><Eyebrow>Ota yhteyttä</Eyebrow><h2 id="contact-heading">Pyydä tarjous</h2><p>Ota yhteyttä ja kerro projektistasi. Vastaamme mielellämme kysymyksiin ja sovimme tarvittaessa maksuttoman kartoituskäynnin Nurmijärvellä tai lähialueilla.</p>
       <dl className="contact-details"><div><dt><span className="icon-circle"><House size={23} /></span>Yritys</dt><dd>{company.officialName}</dd></div><div><dt><span className="icon-circle"><MapPin size={23} /></span>Sijainti</dt><dd>{company.locality}</dd></div>{company.phone && <div><dt><span className="icon-circle"><Phone size={23} /></span>Puhelin</dt><dd><a href={`tel:${company.phoneHref}`}>{company.phone}</a></dd></div>}<div><dt><span className="icon-circle"><Mail size={23} /></span>Sähköposti</dt><dd><a href={`mailto:${company.email}`}>{company.email}</a></dd></div></dl>
     </div>

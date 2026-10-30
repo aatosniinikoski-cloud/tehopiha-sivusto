@@ -13,7 +13,7 @@ export const services = [
 // Original client-supplied photographs. No project locations have been inferred.
 export type Project = { title: string; image: string; alt: string; beforeImage?: string; house?: boolean };
 export const projects: Project[] = [
-  { title: 'Talonmaalaus', image: '/images/tehopiha_talo_paakuva.jpg', alt: 'Musta puutalo, jossa on valkoiset ikkunanpuitteet', house: true },
-  { title: 'Pintaremontti', image: '/images/6a045489-0377-423c-a405-6c8915c793f5.jpeg', alt: 'Eteinen, jossa on harmaanruskea seinä, valkoinen tasoitettu alue, vaaleanpunertava panelointi ja puiset ovet' },
-  { title: 'Seinän paikkaukset', image: '/images/ad4ba6e3-2797-4eca-9677-b2d69682ab65.jpeg', alt: 'Jälkeen: viimeistelty harmaan ja valkoisen seinäpinnan nurkka', beforeImage: '/images/IMG_3243.jpeg' },
+  { title: 'Talonmaalaus', image: `${import.meta.env.BASE_URL}images/tehopiha_talo_paakuva.jpg`, alt: 'Musta puutalo, jossa on valkoiset ikkunanpuitteet', house: true },
+  { title: 'Pintaremontti', image: `${import.meta.env.BASE_URL}images/6a045489-0377-423c-a405-6c8915c793f5.jpeg`, alt: 'Eteinen, jossa on harmaanruskea seinä, valkoinen tasoitettu alue, vaaleanpunertava panelointi ja puiset ovet' },
+  { title: 'Seinän paikkaukset', image: `${import.meta.env.BASE_URL}images/ad4ba6e3-2797-4eca-9677-b2d69682ab65.jpeg`, alt: 'Jälkeen: viimeistelty harmaan ja valkoisen seinäpinnan nurkka', beforeImage: `${import.meta.env.BASE_URL}images/IMG_3243.jpeg` },
 ];
