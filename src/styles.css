@@ -75,3 +75,14 @@
 @media(max-width:1023px){.hero.hero-reference{--header-height:78px}.hero-reference .hero-inner{width:calc(100% - 64px)}.hero-reference h1{font-size:clamp(48px,5.2vw,60px)}.hero-reference .hero-shade{background:linear-gradient(90deg,#fafbf7f5 0%,#fafbf7eb 35%,#fafbf7a6 58%,#fafbf71a 90%)}}
 @media(max-width:900px){.hero.hero-reference{--header-height:74px}}
 @media(max-width:600px){.hero.hero-reference{padding-block:42px;align-items:center}.hero-reference .hero-inner{width:calc(100% - 40px)}.hero-reference .hero-image{object-position:65% center}.hero-reference .hero-shade{background:linear-gradient(90deg,#fafbf7f5 0%,#fafbf7e8 52%,#fafbf7b3 100%)}.hero-reference .hero-kicker{font-size:10px;letter-spacing:.2em;gap:12px;margin-bottom:22px}.hero-reference .hero-kicker::after{width:50px}.hero-reference h1{font-size:clamp(34px,10.4vw,52px);line-height:1.02;letter-spacing:-.035em}.hero-reference .hero-description{max-width:100%;font-size:16px;line-height:1.5;margin-top:24px}.hero-reference .hero-actions{gap:12px;margin-top:24px;display:grid;grid-template-columns:1fr 1fr}.hero-reference .button{min-width:0;min-height:50px;font-size:14px;padding:12px 10px;gap:8px}.hero-reference .hero-audience{gap:14px;margin-top:28px}.hero-reference .hero-audience-icon{width:48px;height:48px}.hero-reference .hero-audience h3{font-size:16px}.hero-reference .hero-audience p{font-size:13px;line-height:1.45;margin-top:5px}}
+
+/* Customer review, scoped to the hero. */
+.hero-reference .hero-review{margin:26px 0 0;max-width:445px;color:var(--dark)}
+.hero-reference .hero-review-rating{display:flex;align-items:center;gap:14px}
+.hero-reference .hero-review-stars{color:#f5a400;font-size:24px;line-height:1;letter-spacing:0;white-space:nowrap}
+.hero-reference .hero-review-source{font-size:13px;line-height:1.4;color:#646c73}
+.hero-reference .hero-review blockquote{margin:10px 0 12px;font-size:18px;font-weight:500;font-style:italic;line-height:1.4}
+.hero-reference .hero-review figcaption{display:flex;align-items:center;gap:16px;font-size:15px;line-height:1.4}
+.hero-reference .hero-review-avatar{display:flex;align-items:center;justify-content:center;flex-shrink:0;width:46px;height:46px;border-radius:50%;background:#708a94;color:#fff;font-size:25px;font-weight:400}
+@media(min-width:601px) and (max-height:780px){.hero.hero-reference{padding-block:24px}}
+@media(max-width:600px){.hero-reference .hero-review{margin-top:26px;max-width:100%}.hero-reference .hero-review blockquote{font-size:16px}.hero-reference .hero-review-avatar{width:42px;height:42px;font-size:23px}.hero-reference .hero-review figcaption{font-size:14px}}

@@ -5,6 +5,7 @@ import { createRoot } from 'react-dom/client';
 import { ArrowRight, MapPin, CircleCheck, MessageCircle, FileText, Hammer, House, Mail, Phone, Menu, X, ChevronLeft, ChevronRight, UsersRound } from 'lucide-react';
 import '@fontsource/roboto/latin-400.css';
 import '@fontsource/roboto/latin-500.css';
+import '@fontsource/roboto/latin-500-italic.css';
 import '@fontsource/roboto/latin-700.css';
 import '@fontsource/roboto/latin-900.css';
 import { company, navigation, services, projects } from './config';
@@ -67,7 +68,8 @@ function Hero() {
         .from(select('h1'), { opacity: 0, y: 12, duration: 0.68, clearProps: 'opacity,transform' }, 0.12)
         .from(select('.hero-description'), { opacity: 0, y: 8, duration: 0.55, clearProps: 'opacity,transform' }, 0.28)
         .from(select('.hero-actions'), { opacity: 0, y: 8, duration: 0.55, clearProps: 'opacity,transform' }, 0.4)
-        .from(select('.hero-audience'), { opacity: 0, y: 6, duration: 0.55, clearProps: 'opacity,transform' }, 0.5);
+        .from(select('.hero-audience'), { opacity: 0, y: 6, duration: 0.55, clearProps: 'opacity,transform' }, 0.5)
+        .from(select('.hero-review'), { opacity: 0, y: 6, duration: 0.55, clearProps: 'opacity,transform' }, 0.65);
       return () => { entranceRef.current = null; };
     }, heroRef.current!);
     return () => media.revert();
@@ -90,6 +92,11 @@ function Hero() {
       <p className="hero-description">Teemme pintaremontteja, maalaustöitä ja muita saneeraustöitä huolellisesti Nurmijärvellä ja lähialueilla.</p>
       <div className="hero-actions"><a href="#yhteystiedot" className="button">Pyydä tarjous <ArrowRight size={19} /></a><a href="#palvelut" className="button button-outline">Katso palvelut</a></div>
       <div className="hero-audience"><span className="hero-audience-icon" aria-hidden="true"><UsersRound size={28} strokeWidth={1.8} /></span><div><h3>Yksityisille ja yrityksille</h3><p>Samat korkeat laatuvaatimukset kaikille asiakkaillemme.</p></div></div>
+      <figure className="hero-review">
+        <div className="hero-review-rating"><span className="hero-review-stars" role="img" aria-label="5 tähteä viidestä">★★★★★</span><span className="hero-review-source">Google-arvostelu</span></div>
+        <blockquote>”Nopea kommunikointi, erinomainen palvelu ja työn lopputulos oli enemmän kuin tarvitsimme!”</blockquote>
+        <figcaption><span className="hero-review-avatar" aria-hidden="true">S</span><span>Santeri Lehtinen</span></figcaption>
+      </figure>
     </div>
   </section>;
 }
@@ -114,7 +121,7 @@ function WhyChooseUs() { return <section className="trust" aria-labelledby="trus
 </div></section>; }
 function ProjectMedia({ project }: { project: (typeof projects)[number] }) {
   if (project.beforeImage) return <div className="project-image project-comparison">
-    <span className="comparison-half"><img src={project.beforeImage} alt="Ennen: keskeneräinen, epätasainen seinän sauma" loading="lazy" /><span className="comparison-label">ENNEN</span></span>
+    <span className="comparison-half"><img src={project.beforeImage} alt={project.beforeAlt ?? 'Ennen: keskeneräinen, epätasainen seinän sauma'} loading="lazy" /><span className="comparison-label">ENNEN</span></span>
     <span className="comparison-half"><img src={project.image} alt={project.alt} loading="lazy" /><span className="comparison-label">JÄLKEEN</span></span>
   </div>;
   return <div className={`project-image${project.house ? ' project-house' : ''}`}><img src={project.image} alt={project.alt} loading="lazy" /></div>;
