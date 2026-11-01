@@ -86,3 +86,5 @@
 .hero-reference .hero-review-avatar{display:flex;align-items:center;justify-content:center;flex-shrink:0;width:46px;height:46px;border-radius:50%;background:#708a94;color:#fff;font-size:25px;font-weight:400}
 @media(min-width:601px) and (max-height:780px){.hero.hero-reference{padding-block:24px}}
 @media(max-width:600px){.hero-reference .hero-review{margin-top:26px;max-width:100%}.hero-reference .hero-review blockquote{font-size:16px}.hero-reference .hero-review-avatar{width:42px;height:42px;font-size:23px}.hero-reference .hero-review figcaption{font-size:14px}}
+
+.footer .footer-credit{margin:0;padding:4px 20px 16px;text-align:center;font-size:11px;line-height:1.5;color:#a0aaa5}
