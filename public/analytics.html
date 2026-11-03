@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="fi">
+<head><meta charset="utf-8"><meta name="referrer" content="no-referrer"><title>TehoPiha analytiikka</title></head>
+<body>
+<script>
+// This local document requests Google only after a consent-gated parent handshake.
+// Removing its iframe stops the whole runtime, including automatic background hits.
+(() => {
+  const id = 'G-CWKEST2H7X';
+  let initialized = false;
+  let pageViewed = false;
+  function gtag() { window.dataLayer.push(arguments); }
+  window.addEventListener('message', event => {
+    if (window.parent === window || event.source !== window.parent || event.origin !== location.origin || event.data?.source !== 'tehopiha-analytics') return;
+    if (event.data.type === 'init' && !initialized) {
+      const page = new URL(event.data.pageLocation);
+      if (page.origin !== location.origin || page.search || page.hash) return;
+      initialized = true;
+      window.dataLayer = [];
+      window.gtag = gtag;
+      gtag('consent', 'default', { analytics_storage: 'granted', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+      gtag('set', { ads_data_redaction: true, url_passthrough: false,
+        allow_google_signals: false, allow_ad_personalization_signals: false,
+        page_location: page.href, page_referrer: '', page_title: event.data.pageTitle });
+      gtag('js', new Date());
+      gtag('config', id, { send_page_view: false, allow_google_signals: false,
+        allow_ad_personalization_signals: false, cookie_expires: 15552000,
+        cookie_update: false, page_location: page.href, page_referrer: '', page_title: event.data.pageTitle });
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${id}`;
+      document.head.append(script);
+      window.parent.postMessage({ source: 'tehopiha-analytics', type: 'ready' }, location.origin);
+    } else if (initialized && event.data.type === 'event') {
+      const name = event.data.name;
+      if (name !== 'page_view' && name !== 'generate_lead') return;
+      if (name === 'page_view') { if (pageViewed) return; pageViewed = true; }
+      gtag('event', name, { send_to: id });
+    }
+  });
+})();
+</script>
+</body>
+</html>
