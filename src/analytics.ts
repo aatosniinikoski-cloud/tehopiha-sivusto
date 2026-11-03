@@ -75,8 +75,8 @@ function applyChoice(choice: AnalyticsConsent, expiry: number) {
   else {
     // Destroying the context also discards queued hits and Google's timers/listeners.
     // Disable first so frame teardown cannot emit an automatic engagement hit.
-    const runtime = frame?.contentWindow as (Window & { 'ga-disable-G-CWKEST2H7X'?: boolean; dataLayer?: unknown[] }) | null;
-    if (runtime) { runtime['ga-disable-G-CWKEST2H7X'] = true; if (runtime.dataLayer) runtime.dataLayer.length = 0; }
+    const runtime = frame?.contentWindow as (Window & { __tehopihaAnalyticsAllowed?: boolean; 'ga-disable-G-CWKEST2H7X'?: boolean; dataLayer?: unknown[] }) | null;
+    if (runtime) { runtime.__tehopihaAnalyticsAllowed = false; runtime['ga-disable-G-CWKEST2H7X'] = true; if (runtime.dataLayer) runtime.dataLayer.length = 0; }
     frame?.remove(); frame = null; ready = false; pendingLeads = 0;
     deleteAnalyticsCookies();
   }

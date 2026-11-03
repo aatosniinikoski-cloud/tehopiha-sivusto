@@ -16,6 +16,20 @@
       const page = new URL(event.data.pageLocation);
       if (page.origin !== location.origin || page.search || page.hash) return;
       initialized = true;
+      // GA can flush already queued events during frame teardown even with its
+      // disable flag set. Gate transports too, before loading Google's runtime.
+      window.__tehopihaAnalyticsAllowed = true;
+      const allowed = () => window.__tehopihaAnalyticsAllowed === true;
+      const beacon = navigator.sendBeacon.bind(navigator);
+      navigator.sendBeacon = (url, data) => allowed() ? beacon(url, data) : false;
+      const fetch = window.fetch.bind(window);
+      window.fetch = (input, options) => allowed() ? fetch(input, options) : Promise.reject(new DOMException('Analytics consent withdrawn', 'AbortError'));
+      const send = XMLHttpRequest.prototype.send;
+      XMLHttpRequest.prototype.send = function(body) { if (allowed()) return send.call(this, body); this.abort(); };
+      const imageSource = Object.getOwnPropertyDescriptor(HTMLImageElement.prototype, 'src');
+      if (imageSource?.set) Object.defineProperty(HTMLImageElement.prototype, 'src', {
+        ...imageSource, set(value) { if (allowed()) imageSource.set.call(this, value); }
+      });
       window.dataLayer = [];
       window.gtag = gtag;
       gtag('consent', 'default', { analytics_storage: 'granted', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
